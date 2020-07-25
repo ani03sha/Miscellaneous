@@ -7,7 +7,7 @@ package org.redquark.practice.leetcode.medium;
  * <p>
  * You may not modify the values in the list's nodes, only nodes itself may be changed.
  */
-public class Problem24_SwapNodesInPairs {
+public class Problem024_SwapNodesInPairs {
 
     private static Node swapPairs(Node head) {
         // Create a new node
