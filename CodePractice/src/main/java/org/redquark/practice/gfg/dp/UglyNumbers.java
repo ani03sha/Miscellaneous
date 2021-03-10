@@ -1,4 +1,4 @@
-package org.redquark.practice.gfg;
+package org.redquark.practice.gfg.dp;
 
 public class UglyNumbers {
 

@@ -1,4 +1,4 @@
-package org.redquark.practice.gfg;
+package org.redquark.practice.gfg.dp;
 
 import java.util.Arrays;
 

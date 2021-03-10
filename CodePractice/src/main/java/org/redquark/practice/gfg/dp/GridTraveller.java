@@ -1,4 +1,4 @@
-package org.redquark.practice.gfg;
+package org.redquark.practice.gfg.dp;
 
 /**
  * Count all the possible paths from top left to bottom right of a mXn matrix with
