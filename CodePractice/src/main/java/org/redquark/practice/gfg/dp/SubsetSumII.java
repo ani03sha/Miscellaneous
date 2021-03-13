@@ -61,6 +61,27 @@ public class SubsetSumII {
         return null;
     }
 
+    private static List<Integer> howSumTabulation(int[] nums, int target) {
+        List<List<Integer>> lookup = new ArrayList<>();
+        lookup.add(new ArrayList<>());
+        for (int i = 1; i < target; i++) {
+            lookup.add(null);
+        }
+        for (int i = 0; i <= target; i++) {
+            for (int n : nums) {
+                if (i + n <= target && lookup.get(i) != null) {
+                    List<Integer> currentList = new ArrayList<>(lookup.get(i));
+                    currentList.add(0, n);
+                    if (i + n == target) {
+                        return currentList;
+                    }
+                    lookup.set(i + n, currentList);
+                }
+            }
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
         int[] nums = new int[]{2, 3};
         int target = 7;
@@ -72,6 +93,10 @@ public class SubsetSumII {
         combination = howSumMemoization(nums, target);
         end = System.currentTimeMillis();
         System.out.println("Time taken using memoization: " + (end - start) + " milliseconds and the output is: " + combination);
+        start = System.currentTimeMillis();
+        combination = howSumTabulation(nums, target);
+        end = System.currentTimeMillis();
+        System.out.println("Time taken using tabulation: " + (end - start) + " milliseconds and the output is: " + combination);
 
         nums = new int[]{5, 3, 4, 7};
         target = 7;
@@ -83,6 +108,10 @@ public class SubsetSumII {
         combination = howSumMemoization(nums, target);
         end = System.currentTimeMillis();
         System.out.println("Time taken using memoization: " + (end - start) + " milliseconds and the output is: " + combination);
+        start = System.currentTimeMillis();
+        combination = howSumTabulation(nums, target);
+        end = System.currentTimeMillis();
+        System.out.println("Time taken using tabulation: " + (end - start) + " milliseconds and the output is: " + combination);
 
         nums = new int[]{2, 4};
         target = 17;
@@ -94,6 +123,10 @@ public class SubsetSumII {
         combination = howSumMemoization(nums, target);
         end = System.currentTimeMillis();
         System.out.println("Time taken using memoization: " + (end - start) + " milliseconds and the output is: " + combination);
+        start = System.currentTimeMillis();
+        combination = howSumTabulation(nums, target);
+        end = System.currentTimeMillis();
+        System.out.println("Time taken using tabulation: " + (end - start) + " milliseconds and the output is: " + combination);
 
         nums = new int[]{2, 3, 5};
         target = 25;
@@ -105,6 +138,10 @@ public class SubsetSumII {
         combination = howSumMemoization(nums, target);
         end = System.currentTimeMillis();
         System.out.println("Time taken using memoization: " + (end - start) + " milliseconds and the output is: " + combination);
+        start = System.currentTimeMillis();
+        combination = howSumTabulation(nums, target);
+        end = System.currentTimeMillis();
+        System.out.println("Time taken using tabulation: " + (end - start) + " milliseconds and the output is: " + combination);
 
         nums = new int[]{7, 14};
         target = 300;
@@ -116,5 +153,9 @@ public class SubsetSumII {
         combination = howSumMemoization(nums, target);
         end = System.currentTimeMillis();
         System.out.println("Time taken using memoization: " + (end - start) + " milliseconds and the output is: " + combination);
+        start = System.currentTimeMillis();
+        combination = howSumTabulation(nums, target);
+        end = System.currentTimeMillis();
+        System.out.println("Time taken using tabulation: " + (end - start) + " milliseconds and the output is: " + combination);
     }
 }
