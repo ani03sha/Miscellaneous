@@ -47,6 +47,21 @@ public class SubsetSum {
         return false;
     }
 
+    private static boolean canSumTabulation(int[] nums, int target) {
+        boolean[] lookup = new boolean[target + 1];
+        lookup[0] = true;
+        for (int i = 0; i <= target; i++) {
+            if (lookup[i]) {
+                for (int n : nums) {
+                    if (i + n <= target) {
+                        lookup[i + n] = true;
+                    }
+                }
+            }
+        }
+        return lookup[target];
+    }
+
     public static void main(String[] args) {
         int[] nums = new int[]{2, 3};
         int target = 7;
@@ -58,6 +73,10 @@ public class SubsetSum {
         ifPossible = canSumMemoization(nums, target);
         end = System.currentTimeMillis();
         System.out.println("Time taken using memoization: " + (end - start) + " milliseconds and the output is: " + ifPossible);
+        start = System.currentTimeMillis();
+        ifPossible = canSumTabulation(nums, target);
+        end = System.currentTimeMillis();
+        System.out.println("Time taken using tabulation: " + (end - start) + " milliseconds and the output is: " + ifPossible);
 
         nums = new int[]{5, 3, 4, 7};
         target = 7;
@@ -69,6 +88,10 @@ public class SubsetSum {
         ifPossible = canSumMemoization(nums, target);
         end = System.currentTimeMillis();
         System.out.println("Time taken using memoization: " + (end - start) + " milliseconds and the output is: " + ifPossible);
+        start = System.currentTimeMillis();
+        ifPossible = canSumTabulation(nums, target);
+        end = System.currentTimeMillis();
+        System.out.println("Time taken using tabulation: " + (end - start) + " milliseconds and the output is: " + ifPossible);
 
         nums = new int[]{2, 4};
         target = 17;
@@ -80,6 +103,10 @@ public class SubsetSum {
         ifPossible = canSumMemoization(nums, target);
         end = System.currentTimeMillis();
         System.out.println("Time taken using memoization: " + (end - start) + " milliseconds and the output is: " + ifPossible);
+        start = System.currentTimeMillis();
+        ifPossible = canSumTabulation(nums, target);
+        end = System.currentTimeMillis();
+        System.out.println("Time taken using tabulation: " + (end - start) + " milliseconds and the output is: " + ifPossible);
 
         nums = new int[]{2, 3, 5};
         target = 25;
@@ -91,6 +118,10 @@ public class SubsetSum {
         ifPossible = canSumMemoization(nums, target);
         end = System.currentTimeMillis();
         System.out.println("Time taken using memoization: " + (end - start) + " milliseconds and the output is: " + ifPossible);
+        start = System.currentTimeMillis();
+        ifPossible = canSumTabulation(nums, target);
+        end = System.currentTimeMillis();
+        System.out.println("Time taken using tabulation: " + (end - start) + " milliseconds and the output is: " + ifPossible);
 
         nums = new int[]{7, 14};
         target = 320;
@@ -102,5 +133,9 @@ public class SubsetSum {
         ifPossible = canSumMemoization(nums, target);
         end = System.currentTimeMillis();
         System.out.println("Time taken using memoization: " + (end - start) + " milliseconds and the output is: " + ifPossible);
+        start = System.currentTimeMillis();
+        ifPossible = canSumTabulation(nums, target);
+        end = System.currentTimeMillis();
+        System.out.println("Time taken using tabulation: " + (end - start) + " milliseconds and the output is: " + ifPossible);
     }
 }
