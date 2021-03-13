@@ -66,6 +66,26 @@ public class SubsetSumIII {
         return shortestCombination;
     }
 
+    private static List<Integer> bestSumTabulation(int[] nums, int target) {
+        List<List<Integer>> lookup = new ArrayList<>();
+        lookup.add(new ArrayList<>());
+        for (int i = 1; i <= target; i++) {
+            lookup.add(null);
+        }
+        for (int i = 0; i <= target; i++) {
+            for (int n : nums) {
+                if (i + n <= target && lookup.get(i) != null) {
+                    List<Integer> currentList = new ArrayList<>(lookup.get(i));
+                    currentList.add(0, n);
+                    if (lookup.get(i + n) == null || lookup.get(i + n).size() > currentList.size()) {
+                        lookup.set(i + n, currentList);
+                    }
+                }
+            }
+        }
+        return lookup.get(target);
+    }
+
     public static void main(String[] args) {
         int[] nums = new int[]{5, 3, 4, 7};
         int target = 7;
@@ -77,6 +97,10 @@ public class SubsetSumIII {
         shortestCombination = bestSumMemoization(nums, target);
         end = System.currentTimeMillis();
         System.out.println("Time taken using memoization: " + (end - start) + " milliseconds and the output is: " + shortestCombination);
+        start = System.currentTimeMillis();
+        shortestCombination = bestSumTabulation(nums, target);
+        end = System.currentTimeMillis();
+        System.out.println("Time taken using tabulation: " + (end - start) + " milliseconds and the output is: " + shortestCombination);
 
         nums = new int[]{2, 3, 5};
         target = 8;
@@ -88,6 +112,10 @@ public class SubsetSumIII {
         shortestCombination = bestSumMemoization(nums, target);
         end = System.currentTimeMillis();
         System.out.println("Time taken using memoization: " + (end - start) + " milliseconds and the output is: " + shortestCombination);
+        start = System.currentTimeMillis();
+        shortestCombination = bestSumTabulation(nums, target);
+        end = System.currentTimeMillis();
+        System.out.println("Time taken using tabulation: " + (end - start) + " milliseconds and the output is: " + shortestCombination);
 
         nums = new int[]{1, 4, 5};
         target = 8;
@@ -99,6 +127,10 @@ public class SubsetSumIII {
         shortestCombination = bestSumMemoization(nums, target);
         end = System.currentTimeMillis();
         System.out.println("Time taken using memoization: " + (end - start) + " milliseconds and the output is: " + shortestCombination);
+        start = System.currentTimeMillis();
+        shortestCombination = bestSumTabulation(nums, target);
+        end = System.currentTimeMillis();
+        System.out.println("Time taken using tabulation: " + (end - start) + " milliseconds and the output is: " + shortestCombination);
 
         nums = new int[]{1, 2};
         target = 4;
@@ -110,6 +142,10 @@ public class SubsetSumIII {
         shortestCombination = bestSumMemoization(nums, target);
         end = System.currentTimeMillis();
         System.out.println("Time taken using memoization: " + (end - start) + " milliseconds and the output is: " + shortestCombination);
+        start = System.currentTimeMillis();
+        shortestCombination = bestSumTabulation(nums, target);
+        end = System.currentTimeMillis();
+        System.out.println("Time taken using tabulation: " + (end - start) + " milliseconds and the output is: " + shortestCombination);
 
         nums = new int[]{1, 2, 5, 25};
         target = 50;
@@ -121,5 +157,9 @@ public class SubsetSumIII {
         shortestCombination = bestSumMemoization(nums, target);
         end = System.currentTimeMillis();
         System.out.println("Time taken using memoization: " + (end - start) + " milliseconds and the output is: " + shortestCombination);
+        start = System.currentTimeMillis();
+        shortestCombination = bestSumTabulation(nums, target);
+        end = System.currentTimeMillis();
+        System.out.println("Time taken using tabulation: " + (end - start) + " milliseconds and the output is: " + shortestCombination);
     }
 }
