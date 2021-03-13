@@ -53,6 +53,23 @@ public class WordBreak {
         return false;
     }
 
+    private static boolean wordBreakTabulation(String s, List<String> wordDict) {
+        int n = s.length();
+        boolean[] lookup = new boolean[n + 1];
+        lookup[0] = true;
+        for (int i = 0; i <= n; i++) {
+            if (lookup[i]) {
+                String suffix = s.substring(i);
+                for (String word : wordDict) {
+                    if (i + word.length() <= n && suffix.indexOf(word) == 0) {
+                        lookup[i + word.length()] = true;
+                    }
+                }
+            }
+        }
+        return lookup[n];
+    }
+
     public static void main(String[] args) {
         String s = "abcdef";
         List<String> wordDict = Arrays.asList("ab", "abc", "cd", "def", "abcd");
@@ -64,6 +81,10 @@ public class WordBreak {
         canConstruct = wordBreakMemoization(s, wordDict);
         end = System.currentTimeMillis();
         System.out.println("Time taken using memoization: " + (end - start) + " milliseconds and the output ismilliseconds and the output is: " + canConstruct);
+        start = System.currentTimeMillis();
+        canConstruct = wordBreakTabulation(s, wordDict);
+        end = System.currentTimeMillis();
+        System.out.println("Time taken using tabulation: " + (end - start) + " milliseconds and the output ismilliseconds and the output is: " + canConstruct);
 
         s = "skateboard";
         wordDict = Arrays.asList("bo", "rd", "ate", "t", "ska", "sk", "boar");
@@ -75,6 +96,10 @@ public class WordBreak {
         canConstruct = wordBreakMemoization(s, wordDict);
         end = System.currentTimeMillis();
         System.out.println("Time taken using memoization: " + (end - start) + " milliseconds and the output is: " + canConstruct);
+        start = System.currentTimeMillis();
+        canConstruct = wordBreakTabulation(s, wordDict);
+        end = System.currentTimeMillis();
+        System.out.println("Time taken using tabulation: " + (end - start) + " milliseconds and the output ismilliseconds and the output is: " + canConstruct);
 
         s = "enterapotentpot";
         wordDict = Arrays.asList("a", "p", "ent", "enter", "ot", "o", "t");
@@ -86,6 +111,10 @@ public class WordBreak {
         canConstruct = wordBreakMemoization(s, wordDict);
         end = System.currentTimeMillis();
         System.out.println("Time taken using memoization: " + (end - start) + " milliseconds and the output is: " + canConstruct);
+        start = System.currentTimeMillis();
+        canConstruct = wordBreakTabulation(s, wordDict);
+        end = System.currentTimeMillis();
+        System.out.println("Time taken using tabulation: " + (end - start) + " milliseconds and the output ismilliseconds and the output is: " + canConstruct);
 
         s = "eeeeeeeeeeeeeeeeeeeeeeeeeeeeef";
         wordDict = Arrays.asList("e", "ee", "eee", "eeee", "eeeee");
@@ -97,5 +126,9 @@ public class WordBreak {
         canConstruct = wordBreakMemoization(s, wordDict);
         end = System.currentTimeMillis();
         System.out.println("Time taken using memoization: " + (end - start) + " milliseconds and the output is: " + canConstruct);
+        start = System.currentTimeMillis();
+        canConstruct = wordBreakTabulation(s, wordDict);
+        end = System.currentTimeMillis();
+        System.out.println("Time taken using tabulation: " + (end - start) + " milliseconds and the output ismilliseconds and the output is: " + canConstruct);
     }
 }
