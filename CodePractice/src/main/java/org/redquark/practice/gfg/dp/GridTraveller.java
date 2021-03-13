@@ -6,7 +6,7 @@ package org.redquark.practice.gfg.dp;
  */
 public class GridTraveller {
 
-    private static int numberOfPathsRecursive(int m, int n) {
+    private static long numberOfPathsRecursive(int m, int n) {
         // Special case
         if (m == 0 || n == 0) {
             return 0;
@@ -37,6 +37,20 @@ public class GridTraveller {
         return lookup[m][n];
     }
 
+    private static long numberOfPathsTabulation(int m, int n) {
+        long[][] lookup = new long[m + 1][n + 1];
+        lookup[1][1] = 1;
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+                if (i == 1 && j == 1) {
+                    continue;
+                }
+                lookup[i][j] = lookup[i - 1][j] + lookup[i][j - 1];
+            }
+        }
+        return lookup[m][n];
+    }
+
     public static void main(String[] args) {
         int m = 18;
         int n = 18;
@@ -44,10 +58,13 @@ public class GridTraveller {
         long totalPaths = numberOfPathsRecursive(m, n);
         long end = System.currentTimeMillis();
         System.out.println("Time taken for calculating " + totalPaths + " paths recursively: " + (end - start) + " milliseconds");
-
         start = System.currentTimeMillis();
         totalPaths = numberOfPathsMemoization(m, n);
         end = System.currentTimeMillis();
         System.out.println("Time taken for calculating " + totalPaths + " paths using memoization: " + (end - start) + " milliseconds");
+        start = System.currentTimeMillis();
+        totalPaths = numberOfPathsTabulation(m, n);
+        end = System.currentTimeMillis();
+        System.out.println("Time taken for calculating " + totalPaths + " paths using tabulation: " + (end - start) + " milliseconds");
     }
 }
