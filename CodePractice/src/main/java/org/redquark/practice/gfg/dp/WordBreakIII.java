@@ -60,6 +60,32 @@ public class WordBreakIII {
         return totalWays;
     }
 
+    private static List<List<String>> allConstructTabulation(String s, List<String> wordDict) {
+        int n = s.length();
+        List<List<String>>[] lookup = new List[n + 1];
+        lookup[0] = new ArrayList<>();
+        lookup[0].add(new ArrayList<>());
+        for (int i = 1; i <= n; i++) {
+            lookup[i] = new ArrayList<>();
+        }
+        for (int i = 0; i <= n; i++) {
+            if (!lookup[i].isEmpty()) {
+                String suffix = s.substring(i);
+                for (String word : wordDict) {
+                    if (i + word.length() <= n && suffix.indexOf(word) == 0) {
+                        List<List<String>> currentList = lookup[i]
+                                .stream()
+                                .map(ArrayList::new)
+                                .collect(Collectors.toList());
+                        currentList.forEach(a -> a.add(word));
+                        lookup[i + word.length()].addAll(currentList);
+                    }
+                }
+            }
+        }
+        return lookup[n];
+    }
+
     public static void main(String[] args) {
         String s = "abcdef";
         List<String> wordDict = Arrays.asList("ab", "abc", "cd", "def", "abcd");
@@ -71,6 +97,10 @@ public class WordBreakIII {
         allWays = allConstructMemoization(s, wordDict);
         end = System.currentTimeMillis();
         System.out.println("Time taken using memoization: " + (end - start) + " milliseconds and the output is: " + allWays);
+        start = System.currentTimeMillis();
+        allWays = allConstructTabulation(s, wordDict);
+        end = System.currentTimeMillis();
+        System.out.println("Time taken using tabulation: " + (end - start) + " milliseconds and the output is: " + allWays);
 
         s = "skateboard";
         wordDict = Arrays.asList("bo", "rd", "ate", "t", "ska", "sk", "boar");
@@ -82,6 +112,10 @@ public class WordBreakIII {
         allWays = allConstructMemoization(s, wordDict);
         end = System.currentTimeMillis();
         System.out.println("Time taken using memoization: " + (end - start) + " milliseconds and the output is: " + allWays);
+        start = System.currentTimeMillis();
+        allWays = allConstructTabulation(s, wordDict);
+        end = System.currentTimeMillis();
+        System.out.println("Time taken using tabulation: " + (end - start) + " milliseconds and the output is: " + allWays);
 
         s = "enterapotentpot";
         wordDict = Arrays.asList("a", "p", "ent", "enter", "ot", "o", "t");
@@ -93,6 +127,10 @@ public class WordBreakIII {
         allWays = allConstructMemoization(s, wordDict);
         end = System.currentTimeMillis();
         System.out.println("Time taken using memoization: " + (end - start) + " milliseconds and the output is: " + allWays);
+        start = System.currentTimeMillis();
+        allWays = allConstructTabulation(s, wordDict);
+        end = System.currentTimeMillis();
+        System.out.println("Time taken using tabulation: " + (end - start) + " milliseconds and the output is: " + allWays);
 
         s = "eeeeeeeeeeeeeeeeeeeeeeeeeeeeef";
         wordDict = Arrays.asList("e", "ee", "eee", "eeee", "eeeee");
@@ -104,5 +142,9 @@ public class WordBreakIII {
         allWays = allConstructMemoization(s, wordDict);
         end = System.currentTimeMillis();
         System.out.println("Time taken using memoization: " + (end - start) + " milliseconds and the output is: " + allWays);
+        start = System.currentTimeMillis();
+        allWays = allConstructTabulation(s, wordDict);
+        end = System.currentTimeMillis();
+        System.out.println("Time taken using tabulation: " + (end - start) + " milliseconds and the output is: " + allWays);
     }
 }
