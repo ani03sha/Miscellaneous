@@ -1,5 +1,25 @@
 package org.redquark.practice.gfg.interview;
 
+/**
+ * @author Anirudh Sharma
+ * <p>
+ * You are given two strings S and T. An infinitely long string is formed in the following manner:
+ * <p>
+ * Take an empty string
+ * Append S one time.
+ * Append T two times.
+ * Append S three times.
+ * Append T four times.
+ * and so on, appending the strings alternately and increasing the number of repetitions by 1 each time.
+ * <p>
+ * You will also be given an integer K, you need to tell the Kth Character of this infinitely long string.
+ * <p>
+ * Sample Input:
+ * S = "a", T = "bc", K = 4
+ * <p>
+ * Sample Output:
+ * b
+ */
 public class FindKthCharacter {
 
     private static char find(String S, String T, int K) {
