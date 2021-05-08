@@ -57,6 +57,7 @@ public class BuyShares {
                     }
                     // Add price which is less than one
                     queue.offer(current - 1);
+                    // Add price which is twice the previous price
                     queue.offer(2 * current);
                 }
             }
