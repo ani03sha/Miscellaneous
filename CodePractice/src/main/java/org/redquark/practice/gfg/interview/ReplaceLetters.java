@@ -18,17 +18,21 @@ public class ReplaceLetters {
             return s;
         }
         char[] characters = s.toCharArray();
-        boolean[] visited = new boolean[26];
+        boolean[] visited = new boolean[characters.length];
         for (int i = 0; i < characters.length; i++) {
-            char c = characters[i];
-            Character value = dictionary.get(c);
-            if (value != null && !visited[i]) {
-                char temp = characters[i];
-                characters[i] = value;
-                visited[i] = true;
-                int index = s.indexOf(value);
-                characters[index] = temp;
-                visited[index] = true;
+            for (Map.Entry<Character, Character> entry : dictionary.entrySet()) {
+                if (!visited[i] && characters[i] == entry.getKey()) {
+                    characters[i] = entry.getValue();
+                    visited[i] = true;
+                }
+            }
+        }
+        for (int i = 0; i < characters.length; i++) {
+            for (Map.Entry<Character, Character> entry : dictionary.entrySet()) {
+                if (!visited[i] && characters[i] == entry.getValue()) {
+                    characters[i] = entry.getKey();
+                    visited[i] = true;
+                }
             }
         }
         return new String(characters);
@@ -45,6 +49,12 @@ public class ReplaceLetters {
         dictionary = new HashMap<>() {{
             put('a', 'b');
             put('b', 'a');
+        }};
+        System.out.println(replace(s, dictionary));
+
+        s = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacccccccccc";
+        dictionary = new HashMap<>() {{
+            put('a', 'c');
         }};
         System.out.println(replace(s, dictionary));
     }
