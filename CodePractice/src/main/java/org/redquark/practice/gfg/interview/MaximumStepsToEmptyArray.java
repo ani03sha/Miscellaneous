@@ -6,10 +6,11 @@ import java.util.TreeMap;
 /**
  * @author Anirudh Sharma
  * <p>
- * iven an array arr[] of size N. In each operation, pick an array element X and remove all array
- * elements in the range [X – 1, X + 1].
+ * You are given N distinct coins. In one move you pick a random coin of value X and then you remove
+ * all the coins with value X-1 and X+1 along with the coin X.
  * <p>
- * The task is to find the maximum number of steps required such that no coins left in the array.
+ * The game gets finished when no coins are left to pick. Find the maximum number of moves in which
+ * you can finish the game. Constraints : 1 <= N <= 10^5
  */
 public class MaximumStepsToEmptyArray {
 
