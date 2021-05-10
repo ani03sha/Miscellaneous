@@ -1,4 +1,4 @@
-package org.redquark.practice.gfg.interview;
+package org.redquark.practice.interview;
 
 import java.util.Map;
 import java.util.TreeMap;

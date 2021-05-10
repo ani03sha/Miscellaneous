@@ -1,4 +1,4 @@
-package org.redquark.practice.gfg.interview;
+package org.redquark.practice.interview;
 
 /**
  * @author Anirudh Sharma
