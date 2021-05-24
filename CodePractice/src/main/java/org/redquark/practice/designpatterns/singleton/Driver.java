@@ -16,5 +16,13 @@ public class Driver {
         System.out.println("Memory address of first object of lazily loaded singleton: " + lazilyLoadedSingletonInstance);
         LazilyLoadedSingleton anotherLazilyLoadedSingletonInstance = LazilyLoadedSingleton.getInstance();
         System.out.println("Memory address of second object of lazily loaded singleton: " + anotherLazilyLoadedSingletonInstance);
+
+        System.out.println();
+
+        // Test for Thread safe singleton
+        ThreadSafeSingleton threadSafeSingletonInstance = ThreadSafeSingleton.getInstance();
+        System.out.println("Memory address of first object of thread safe singleton: " + threadSafeSingletonInstance);
+        ThreadSafeSingleton anotherThreadSafeSingletonInstance = ThreadSafeSingleton.getInstance();
+        System.out.println("Memory address of second object of thread safe singleton: " + anotherThreadSafeSingletonInstance);
     }
 }
